@@ -62,6 +62,7 @@ public class LoginResource {
 
             Entity.Builder pre = Entity.newBuilder(userKey)
                     .set("user_name", data.user_name)
+                    .set("user_role", data.user_role)
                     .set("user_pwd", data.user_pwd)
                     .set("user_email", data.user_email)
                     .set("user_creation_time", Timestamp.now())
