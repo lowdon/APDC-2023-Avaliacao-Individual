@@ -404,7 +404,10 @@ public class LoginResource {
                 if(author.getString("user_pwd").equals(data.old_pwd) &&
                 data.new_pwd.equals(data.new_pwd_conf) ) {
                     //this.users.remove(nameToBeRemoved);
-                    Entity updatedUser = Entity.newBuilder(author.getKey())
+                	
+                    Entity updatedUser;
+                    try {
+                    updatedUser = Entity.newBuilder(author.getKey())
                             .set("user_name", author.getString("user_name")) // DO NOT ALLOW TO CHANGE USERNAME
                             .set("user_pwd", data.new_pwd)
                             .set("user_email", author.getString("user_email"))
@@ -418,6 +421,15 @@ public class LoginResource {
                             .set("nif", author.getString("nif"))
                             .set("state", author.getString("state"))
                             .build();
+                    } catch(Exception e) {
+                    	updatedUser = Entity.newBuilder(author.getKey())
+                                .set("user_name", author.getString("user_name")) // DO NOT ALLOW TO CHANGE USERNAME
+                                .set("user_pwd", data.new_pwd)
+                                .set("user_email", author.getString("user_email"))
+                                .set("user_creation_time", author.getTimestamp("user_creation_time"))
+                                .set("user_lastmodified_time", author.getTimestamp("user_lastmodified_time"))
+                                .set("user_role", author.getLong("user_role")).build();
+                    }
 
                     this.datastore.put(updatedUser);
                     return Response.ok("Changed password successfully userID: " + author.getString("user_name") +
