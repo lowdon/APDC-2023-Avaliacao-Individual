@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <title>Hello App Engine</title>
+  </head>
+
+  <body>
+    <h1>Hello App Engine!</h1>
+
+    <h2>Login</h2>
+    <form class="form-signin" method="POST" action="rest/login/login">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <input class="form-control" type="text" required name="user_name" placeholder="Username">
+      <input class="form-control" type="password" required name="user_pwd" placeholder="Password">
+      <label class="checkbox"></label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+  </body>
+</html>
