@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <title>Hello App Engine</title>
+    <script>
+
+      function login(){
+
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+
+        fetch('https://boreal-union-380015.oa.r.appspot.com/login/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            user_name: username,
+            user_pwd: password
+          })
+        })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+      }
+
+
+    </script>
+  </head>
+
+  <body>
+    <h1>Hello App Engine!</h1>
+
+    <h2>Login</h2>
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username">
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+
+      <button type="submit" onclick="login()">Login</button>
+    </form>
+  </body>
+</html>
